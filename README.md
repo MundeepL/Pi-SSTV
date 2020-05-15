@@ -11,7 +11,7 @@ Pi SSTV is an extension to one of my previous projects [PiFM GTK](https://github
 As it is requires a license to transmit on certain FM frequencies, please read the [legal warning](#warning-and-disclaimer).
 
 ## Compatibility
-This piece of software is designed to work will most versions of the Raspberry Pi up. The installation is designed to be done on Raspbian (lite or full), which is the Official Raspberry Pi Operating System. From testing, the operating system must be from at least 2015 as the `rpi-mailbox` driver is not included in earlier versions. Furthermore, I could not get it to operate on the latest image as `libgd2-xpm-dev` is no longer in the repositiry, therefore meaning I was unable to compile the software. As a result, I used the 2017-09-07 build which can be found [here](https://downloads.raspberrypi.org/raspbian/images/raspbian-2017-09-08/) and this worked flawlessly. As a result, there is no guarantee that it will work on Raspberry Pi models more recently than this. I will, however, try to get it to work on newer builds of Raspbian so that it can be used on the Raspberry Pi Zero W and 4b models.
+This piece of software is designed to work on all versions of the Raspberry Pi including the 4!. The installation is designed to be done on Raspbian, which is the Official Raspberry Pi Operating System. From testing, the operating system must be from at least 2015 as the `rpi-mailbox` driver is not included in earlier versions. To have the greatest chance of the software working, it is recommended to use a fresh install of Raspbian as it has the most up to date drivers with support for the latest versions of the Pi.
 
 ## How it works
 This program generates an FM modulation, with RDS (Radio Data System) data generated in real time, which isn't particularly relevant for ham radio, but it has the capabilities. PiFM modulates the PLLC instead of the clock divider for increased signal purity, meaning that the signal is also less noisy. For the PLLC modulation to be stable there is an additional step. Due to the low-voltage detection, the PLLC frequency can be reduced to a safe value in an attempt to restrict crashes. When this happens, the carrier freqency changes based on the GPU frequency. To prevent this, we can tweak the GPU freqency to match the safe frequency. Now when due the low voltage detection occurs, the PLLC frequency changes to safe value, meaning nothing happens since the normal value and safe value are identical.
@@ -23,11 +23,11 @@ PiFM has been developed solely for experimentation only. See the [legal warning]
 
 ## Prepping the Pi
 **Required Equipment:**
-* Raspberry Pi (1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+, Zero, are all compatible)
+* Raspberry Pi (1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+, Zero, Zero W, 4 are all compatible)
 * Acceptable power supply (recommended at least 2A)
 * SD Card (4gb minimum with Raspbian Desktop installed. See [installation guide](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2))
-* Mini HDMI cable (Pi Zero)  (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
-* HDMI cable (Pi 1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+) (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
+* Mini HDMI cable (Pi Zero, Zero W)  (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
+* HDMI cable (Pi 1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+, 4) (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 * Ethernet cable (unless it has onboard WiFi or you have a WiFi dongle)
 * USB keyboard/mouse (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 * HDMI monitor/tv to display the desktop (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
@@ -36,7 +36,7 @@ PiFM has been developed solely for experimentation only. See the [legal warning]
 **Optional Equipment:**
 * Portable display (to make it more compact and portable)
 * Portable power bank (so that you can use it on the go)
-* Piece of wire to act as an antenna (GPIO 4)
+* Piece of wire to act as an antenna
 
 ## Installation
 PiFM 1.2.1 depends on a number of prerequisites. These are required. to get the transmitter ready.
@@ -45,16 +45,30 @@ PiFM 1.2.1 depends on a number of prerequisites. These are required. to get the 
 3. Once you are ready to start, turn on the Pi and wait until the desktop environment appears.
 4. At the top left of the screen click the terminal icon and wait for the terminal window to load
 5. Once it has loaded, type in the following commands.
+
+**Pi 4 Installation**
 ```
-git clone https://github/com/mundeeplamport/Pi-SSTV
+git clone https://github/com/mundeeplamport/PiFM
 ```
 This will download the software from this repository
 ```
-chmod +x /home/pi/PiFM-SSTV/setup.sh
+chmod +x /home/pi/PiFM/setup-pi4.sh
 ```
 This changes the permissions to allow you to run the setup
 ```
-./PiFM-SSTV/setup.sh
+./PiFM/setup-pi4.sh
+```
+**Previous Pi Versions**
+```
+git clone https://github/com/mundeeplamport/PiFM
+```
+This will download the software from this repository
+```
+chmod +x /home/pi/PiFM/setup.sh
+```
+This changes the permissions to allow you to run the setup
+```
+./PiFM/setup.sh
 ```
 This begins the installation script for the software and is a fully automated process, and very verbose, so you can see what is happening. Please note that your Raspberry Pi will automatically reboot after the installation is complete.
 

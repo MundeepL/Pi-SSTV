@@ -39,7 +39,7 @@ PiFM has been developed solely for experimentation only. See the [legal warning]
 * Piece of wire to act as an antenna
 
 ## Installation
-PiFM 1.2.1 depends on a number of prerequisites. These are required. to get the transmitter ready.
+PiFM SSTV depends on a number of prerequisites. These are required. to get the transmitter ready.
 1. Install Raspbian Desktop onto an SD card (click [here](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2) for a detailed guide)
 2. Connect your peripherals to the Raspberry Pi (keyboard/mouse/SD/HDMI/etc...)
 3. Once you are ready to start, turn on the Pi and wait until the desktop environment appears.
@@ -75,7 +75,7 @@ This begins the installation script for the software and is a fully automated pr
 **Important.** The binaries compiled for each Raspberry Pi is different. Therefore, always re-compile when switching models. To do this, simply re-run the installer.
 
 ## Usage
-* Find the PiFM-SSTV shortcut in the applications menu in the 'other' submenu.
+* Find the PiFM SSTV shortcut in the applications menu in the 'other' submenu.
 * Use the shortcut located on the desktop.
 * Open a terminal window and type `pifm-sstv` and hit enter.
 Once loaded, a terminal window will appear providing information about the software as well as well as some information. After 5 seconds, you will be asked to take a photo as well as what frequency to transmit on. After this, the software will start broadcasting the photo.

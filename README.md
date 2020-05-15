@@ -5,15 +5,13 @@ Pi SSTV
 ## What is Pi SSTV?
 This first sections covers the need for Pi SSTV and why it was created. If you are only looking for the installation, skip ahead to the [setup](#Prepping-the-Pi).
 
-Pi SSTV is an extension to one of my previous projects [PiFM GTK](https://github.com/mundeeplamport/PiFM-GTK). Pi SSTV is intended for use by ham radio operators as a way to transmit photos that have been captured using the Raspberry Pi camera module.
-
-Furthermore, PiFM has been adapted so that the bandwidth can be configured, which is particularly important for narrow-band ham radio transmissions. Another addition is that the timing can be tuned, which is necessary since improper timings can reslt in slanted images.
+Pi SSTV is an extension to one of my previous projects [PiFM GTK](https://github.com/mundeeplamport/PiFM). Pi SSTV is intended for use by ham radio operators as a way to transmit photos that have been captured using the Raspberry Pi Camera Module. Furthermore, it is designed for regular FM radio (87.5 - 108.0MHz) to transmit, however the software does allow you to choose values outside this range. The purpose of designing it in this way is so that people who do not have a ham radio setup are still able to understand and interact with the software and see how it functions.
 
 ![](doc/SSTV.jpg)
 As it is requires a license to transmit on certain FM frequencies, please read the [legal warning](#warning-and-disclaimer).
 
 ## Compatibility
-This piece of software is designed to work will all versions of the Raspberry Pi excluding the 4. The installation is designed to be done on Raspbian (lite or full), which is the Official Raspberry Pi Operating System. It is guaranteed to work on any version from August 2015 and later, as the installer is automatically designed to check that all dependencies are present (previous versions do not have the `rpi-mailbox` driver), however it is recommended to use a fresh install to reduce the likelihood of any errors.
+This piece of software is designed to work will most versions of the Raspberry Pi up. The installation is designed to be done on Raspbian (lite or full), which is the Official Raspberry Pi Operating System. From testing, the operating system must be from at least 2015 as the `rpi-mailbox` driver is not included in earlier versions. Furthermore, I could not get it to operate on the latest image as `libgd2-xpm-dev` is no longer in the repositiry, therefore meaning I was unable to compile the software. As a result, I used the 2017-09-07 build which can be found [here](https://downloads.raspberrypi.org/raspbian/images/raspbian-2017-09-08/) and this worked flawlessly. As a result, there is no guarantee that it will work on Raspberry Pi models more recently than this. I will, however, try to get it to work on newer builds of Raspbian so that it can be used on the Raspberry Pi Zero W and 4b models.
 
 ## How it works
 This program generates an FM modulation, with RDS (Radio Data System) data generated in real time, which isn't particularly relevant for ham radio, but it has the capabilities. PiFM modulates the PLLC instead of the clock divider for increased signal purity, meaning that the signal is also less noisy. For the PLLC modulation to be stable there is an additional step. Due to the low-voltage detection, the PLLC frequency can be reduced to a safe value in an attempt to restrict crashes. When this happens, the carrier freqency changes based on the GPU frequency. To prevent this, we can tweak the GPU freqency to match the safe frequency. Now when due the low voltage detection occurs, the PLLC frequency changes to safe value, meaning nothing happens since the normal value and safe value are identical.
@@ -25,10 +23,10 @@ PiFM has been developed solely for experimentation only. See the [legal warning]
 
 ## Prepping the Pi
 **Required Equipment:**
-* Raspberry Pi (1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+, Zero, Zero W are all compatible)
+* Raspberry Pi (1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+, Zero, are all compatible)
 * Acceptable power supply (recommended at least 2A)
 * SD Card (4gb minimum with Raspbian Desktop installed. See [installation guide](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2))
-* Mini HDMI cable (Pi Zero or Zero W)  (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
+* Mini HDMI cable (Pi Zero)  (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 * HDMI cable (Pi 1a, 1b, 1a+, 1b+, 2b, 3b, 3a+, 3b+) (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 * Ethernet cable (unless it has onboard WiFi or you have a WiFi dongle)
 * USB keyboard/mouse (alternatively you can use SSH, for which setup can be found [here](https://www.raspberrypi.org/documentation/remote-access/ssh/)
@@ -47,17 +45,16 @@ PiFM 1.2.1 depends on a number of prerequisites. These are required. to get the 
 3. Once you are ready to start, turn on the Pi and wait until the desktop environment appears.
 4. At the top left of the screen click the terminal icon and wait for the terminal window to load
 5. Once it has loaded, type in the following commands.
-**Prior to Pi 4 Installation**
 ```
 git clone https://github/com/mundeeplamport/Pi-SSTV
 ```
 This will download the software from this repository
 ```
-chmod +x /home/pi/PiFM/setup.sh
+chmod +x /home/pi/PiFM-SSTV/setup.sh
 ```
 This changes the permissions to allow you to run the setup
 ```
-./PiFM/setup.sh
+./PiFM-SSTV/setup.sh
 ```
 This begins the installation script for the software and is a fully automated process, and very verbose, so you can see what is happening. Please note that your Raspberry Pi will automatically reboot after the installation is complete.
 
@@ -67,7 +64,7 @@ This begins the installation script for the software and is a fully automated pr
 * Find the PiFM-SSTV shortcut in the applications menu in the 'other' submenu.
 * Use the shortcut located on the desktop.
 * Open a terminal window and type `pifm-sstv` and hit enter.
-Once loaded, a terminal will appear providing information about the software as well as well as some information. After 5 seconds, you will be asked to take a photo as well as what frequency to transmit on. After this, the software will start broadcasting the photo.
+Once loaded, a terminal window will appear providing information about the software as well as well as some information. After 5 seconds, you will be asked to take a photo as well as what frequency to transmit on. After this, the software will start broadcasting the photo.
 
 If at any point you wish to close the broadcast, make the terminal window active and press CTRL and C at the same to interrupt the program.
 

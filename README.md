@@ -1,5 +1,5 @@
 
-Pi SSTV (Currently a working progress, therefore soem files are missing. Instead try out my other project!)
+Pi SSTV (Currently a working progress, therefore some files are missing. Instead try out my other project, PIFM-GTK!)
 =========
 
 ## What is Pi SSTV?

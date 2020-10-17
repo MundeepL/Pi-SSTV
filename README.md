@@ -1,5 +1,5 @@
 
-Pi SSTV
+Pi SSTV (Currently a working progress, therefore soem files are missing. Instead try out my other project!)
 =========
 
 ## What is Pi SSTV?
